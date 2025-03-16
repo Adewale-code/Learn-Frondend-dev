@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Web Development</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+</head>
+<body>
+    <div id="navBar">
+        <a href="index.html">Home</a>
+        <a href="free.html">Free Classes</a>
+        <a href="advanced.html">Advanced Classes</a>
+    </div>
+
+    <div id="content">
+        <h2>Advanced Web Development</h2>
+        <button onclick="showBenefits()">View Benefits & Proceed</button>
+
+        <div id="benefitsModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Benefits of Advanced Class</h2>
+                <ul>
+                    <li>Modern Frontend Frameworks (React, Vue, Tailwind CSS, etc.)</li>
+                    <li>API Integration & AJAX</li>
+                    <li>Advanced Projects & Interactive Quizzes</li>
+                    <li>Certification & Progress Tracking</li>
+                </ul>
+                <input type="email" id="emailInput" placeholder="Enter your email" required>
+                <button onclick="payWithPaystack(5000, 'Weekly')">₦5000 Weekly</button>
+                <button onclick="payWithPaystack(19000, 'Monthly')">₦19,000 Monthly</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show Modal
+        function showBenefits() {
+            document.getElementById('benefitsModal').style.display = 'block';
+        }
+        
+        // Close Modal
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('benefitsModal').style.display = 'none';
+        }
+
+        // Paystack Integration
+        function payWithPaystack(amount, planType) {
+            const email = document.getElementById('emailInput').value;
+
+            if (!email) {
+                alert("Please enter your email before proceeding.");
+                return;
+            }
+
+            let handler = PaystackPop.setup({
+                key: 'YOUR_PUBLIC_KEY', // Replace with your Paystack public key
+                email: email,
+                amount: amount * 100,
+                currency: 'NGN',
+                callback: function(response) {
+                    alert('Payment successful! Reference: ' + response.reference);
+
+                    // Store user subscription data in localStorage
+                    const currentDate = new Date();
+                    const expirationDate = new Date();
+
+                    if (planType === 'Weekly') {
+                        expirationDate.setDate(currentDate.getDate() + 7);
+                    } else if (planType === 'Monthly') {
+                        expirationDate.setDate(currentDate.getDate() + 30);
+                    }
+
+                    const subscriptionData = {
+                        email: email,
+                        plan: planType,
+                        expiration: expirationDate.toISOString()
+                    };
+
+                    localStorage.setItem('subscriptionData', JSON.stringify(subscriptionData));
+
+                    // Redirect to access page
+                    window.location.href = 'access.html';
+                },
+                onClose: function() {
+                    alert('Payment process was closed.');
+                }
+            });
+            handler.openIframe();
+        }
+    </script>
+</body>
+</html>
+
+
+

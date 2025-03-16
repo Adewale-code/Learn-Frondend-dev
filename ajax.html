@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX and API Integration</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        header {
+            
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid #ff8800;
+            background-color: #1F2937;
+        }
+        header h1 {
+            font-family: 'Poppins','Times New Roman', cursive;
+            font-size: 3em;
+            text-align: center;
+            color: #ff8800;
+            animation: glowBlink 1.5s infinite;
+        }
+        @keyframes glowBlink {
+            0%, 100% {text-shadow: 0 0 5px #ff8800, 0 0 15px #ff8800;}
+            50% {text-shadow: 0 0 10px #ff8800, 0 0 25px #ff8800;}
+        }
+
+        section {
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.6s ease-out;
+            margin: 40px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        pre {
+            background: #333;
+            color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #0dbf6e;
+        }
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 0px;
+            transition: margin-left 0.3s;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1E3A8A;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #374151;
+        }
+
+        #result, #fetch-result, #post-result {
+            margin-top: 20px;
+            background-color: #e5e7eb;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+       
+
+        #sidebar ul li a:hover {
+            background-color: #374151;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: red;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        #menu-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background-color: #1E3A8A;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .menu-icon {
+            cursor: pointer;
+            display: block;
+            width: 30px;
+            height: 25px;
+        }
+
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            margin: 4px 0;
+            transition: all 0.3s;
+        }
+       
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            backdrop-filter: blur(10px);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        #sidebar.show {
+            transform: translateX(0);
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px 20px;
+            border-bottom: 1px solid white;
+        }
+
+        #sidebar ul li a {
+            color: #ff8800;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+            animation: glowBlink 1.5s infinite;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: black;
+            
+        } 
+        h3{
+            color: white;
+            text-align: center;
+        }
+        #close-icon {
+            font-size: 20px;
+            color: white;
+        }
+                h2 {
+                    color: #ff8800;
+                    text-decoration: underline;
+                    animation: glowBlink 1.5s infinite;
+                }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            #content {
+                margin-left: 0;
+            }
+
+            #sidebar {
+                width: 200px;
+                height: 515px;
+            }
+            header{
+                padding: 5px;
+            }
+            header h1{
+                font-size: 30px;
+            }
+            .menu-icon{
+                height: 20px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <div id="close-icon" style="text-align: right; padding: 10px; cursor: pointer;">
+            ✖
+        </div>
+        <ul>
+            <h3>Learn More</h3>
+            <li><a href="react.html">React </a></li>
+            <li><a href="Vue.html">Vue.Js</a></li>
+            <li><a href="tailwind.html">Tailwind CSS</a></li>
+            <li><a href="ajax.html">AJAX and API Integration</a></li>
+            <li><a href="#customization">Authentication & Security</a></li>
+            <li><a href="#animations">Version Control - Git & GitHub</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <header>
+            <div class="menu-icon" id="menu-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <h1>AJAX and API Integration</h1>
+        </header>
+
+        <div class="container">
+    <!-- Introduction to AJAX -->
+    <section id="introduction-to-ajax">
+        <h2>Introduction to AJAX</h2>
+        <p>
+            AJAX (Asynchronous JavaScript and XML) allows web applications to send and receive data asynchronously 
+            without reloading the entire web page. Commonly used with APIs to retrieve or send data.
+        </p>
+    </section>
+
+    <!-- XMLHttpRequest Example -->
+    <section id="xmlhttprequest">
+        <h2>Using XMLHttpRequest</h2>
+        <pre><code>
+        &lt;script&gt;
+            function loadData() {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1', true);
+                xhr.onload = function() {
+                    if (this.status === 200) {
+                        document.getElementById('result').innerText = this.responseText;
+                    }
+                };
+                xhr.send();
+            }
+        &lt;/script&gt;
+        </code></pre>
+        <button onclick="loadData()">Fetch Data</button>
+        <div id="result"></div>
+        <script>
+            function loadData() {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', 'https://jsonplaceholder.typicode.com/posts/1', true);
+                xhr.onload = function() {
+                    if (this.status === 200) {
+                        document.getElementById('result').innerText = this.responseText;
+                    }
+                };
+                xhr.send();
+            }
+        </script>
+    </section>
+
+    <!-- Fetch API Example -->
+    <section id="fetch-api">
+        <h2>Using Fetch API</h2>
+        <pre><code>
+            &lt;script&gt;
+            function fetchData() {
+                fetch('https://jsonplaceholder.typicode.com/users/1')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('fetch-result').innerText = JSON.stringify(data, null, 2);
+                    })
+                    .catch(error => console.log('Error:', error));
+            }
+        &lt;/script&gt;
+        </code></pre>
+
+        <button onclick="fetchData()">Fetch Data with Fetch API</button>
+        <div id="fetch-result"></div>
+        <script>
+            function fetchData() {
+                fetch('https://jsonplaceholder.typicode.com/users/1')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('fetch-result').innerText = JSON.stringify(data, null, 2);
+                    })
+                    .catch(error => console.log('Error:', error));
+            }
+        </script>
+    </section>
+
+    <!-- Handling RESTful APIs -->
+    <section id="handling-restful-apis">
+        <h2>Handling RESTful APIs</h2>
+        <pre><code>
+        &lt;script&gt;
+            function postData() {
+                fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: 'Hello', body: 'World', userId: 1 })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('post-result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.log('Error:', error));
+            }
+        &lt;/script&gt;
+        </code></pre>
+        <button onclick="postData()">Send Data</button>
+        <div id="post-result"></div>
+        <script>
+            function postData() {
+                fetch('https://jsonplaceholder.typicode.com/posts', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ title: 'Hello', body: 'World', userId: 1 })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('post-result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.log('Error:', error));
+            }
+        </script>
+    </section>
+
+    <!-- Handling Authentication -->
+<section id="handling-authentication">
+    <h2>Handling Authentication (JWT Tokens)</h2>
+    <p>
+        When interacting with secure APIs, tokens (like JWT) are used for authentication. Here's how to send requests with tokens.
+    </p>
+    <button onclick="fetchWithAuth()">Fetch Data with Token</button>
+    <div id="auth-result"></div>
+    <script>
+        function fetchWithAuth() {
+            const token = "your_jwt_token_here"; // Replace with a valid token
+            fetch('https://jsonplaceholder.typicode.com/posts', {
+                method: 'GET',
+                headers: { 
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('auth-result').innerText = JSON.stringify(data, null, 2);
+            })
+            .catch(error => console.log('Error:', error));
+        }
+    </script>
+</section>
+
+<!-- Axios Library Integration -->
+<section id="axios-library">
+    <h2>Using Axios Library for AJAX Requests</h2>
+    <p>
+        Axios is a popular library for making HTTP requests with ease. It supports promises and provides a simpler syntax than Fetch API.
+    </p>
+    <button onclick="fetchUsingAxios()">Fetch Data with Axios</button>
+    <div id="axios-result"></div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        function fetchUsingAxios() {
+            axios.get('https://jsonplaceholder.typicode.com/users')
+                .then(response => {
+                    document.getElementById('axios-result').innerText = JSON.stringify(response.data, null, 2);
+                })
+                .catch(error => console.log('Error:', error));
+        }
+    </script>
+</section>
+
+<!-- Backend Frameworks Integration -->
+<section id="backend-integration">
+    <h2>Combining AJAX with Backend Frameworks (Node.js / PHP)</h2>
+    <p>
+        AJAX requests can be sent to backend frameworks for dynamic data handling. Example of fetching data from a PHP backend:
+    </p>
+    <button onclick="fetchFromBackend()">Fetch Data from PHP Backend</button>
+    <div id="backend-result"></div>
+    <script>
+        function fetchFromBackend() {
+            fetch('your_backend_endpoint.php')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('backend-result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.log('Error:', error));
+        }
+    </script>
+</section>
+<!-- Pagination, Filtering, Caching -->
+<section id="pagination-filtering">
+    <h2>Pagination, Filtering, Caching</h2>
+    <p>
+        Efficiently handling large datasets by implementing pagination, filtering, and caching mechanisms.
+    </p>
+    <button onclick="fetchWithPagination()">Fetch Paginated Data</button>
+    <div id="pagination-result"></div>
+    <script>
+        let currentPage = 1;
+
+        function fetchWithPagination() {
+            fetch(`https://jsonplaceholder.typicode.com/posts?_page=${currentPage}&_limit=5`)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('pagination-result').innerText = JSON.stringify(data, null, 2);
+                    currentPage++;
+                })
+                .catch(error => console.log('Error:', error));
+        }
+    </script>
+</section>
+
+<!-- Error Handling and Retry Mechanisms -->
+<section id="error-handling">
+    <h2>Error Handling and Retry Mechanisms</h2>
+    <p>
+        Implementing error handling and retries for failed requests. This helps in making requests more resilient.
+    </p>
+    <button onclick="fetchWithRetry()">Fetch Data with Retry</button>
+    <div id="retry-result"></div>
+    <script>
+        function fetchWithRetry(retries = 3) {
+            fetch('https://jsonplaceholder.typicode.com/invalid_endpoint')
+                .then(response => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then(data => document.getElementById('retry-result').innerText = JSON.stringify(data, null, 2))
+                .catch(error => {
+                    if (retries > 0) {
+                        console.log('Retrying... Attempts left:', retries);
+                        fetchWithRetry(retries - 1);
+                    } else {
+                        console.log('Error:', error.message);
+                    }
+                });
+        }
+    </script>
+</section>
+<!-- Caching API Responses -->
+<section id="caching-api-responses">
+    <h2>Caching API Responses</h2>
+    <p>
+        Caching API responses locally to reduce redundant network requests and enhance performance.
+    </p>
+    <button onclick="fetchWithCaching()">Fetch Data with Caching</button>
+    <div id="cache-result"></div>
+    <script>
+        const cache = new Map();
+
+        function fetchWithCaching() {
+            const cacheKey = 'cachedData';
+
+            if (cache.has(cacheKey)) {
+                document.getElementById('cache-result').innerText = JSON.stringify(cache.get(cacheKey), null, 2);
+                return;
+            }
+
+            fetch('https://jsonplaceholder.typicode.com/todos/1')
+                .then(response => response.json())
+                .then(data => {
+                    cache.set(cacheKey, data);
+                    document.getElementById('cache-result').innerText = JSON.stringify(data, null, 2);
+                })
+                .catch(error => console.log('Error:', error));
+        }
+    </script>
+</section>
+
+
+
+    <!-- Best Practices -->
+    <section id="best-practices">
+        <h2>Best Practices</h2>
+        <ul>
+            <li>Use Fetch API for modern development.</li>
+            <li>Implement error handling properly.</li>
+            <li>Follow RESTful principles when dealing with APIs.</li>
+        </ul>
+    </section>
+    </div>
+    </div>
+
+    <script>
+        // Reveal Animation
+        function revealSections() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const triggerPoint = window.innerHeight - 100;
+
+                if (sectionTop < triggerPoint) {
+                    section.classList.add('show');
+                }
+            });
+        }
+        window.addEventListener('scroll', revealSections);
+
+        // Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuIcon.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+        });
+
+        // Close Sidebar when link is clicked (for mobile view)
+        const links = document.querySelectorAll('#sidebar ul li a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+            });
+        });
+        const closeIcon = document.getElementById('close-icon');
+
+        closeIcon.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        });
+    </script>
+</body>
+</html>

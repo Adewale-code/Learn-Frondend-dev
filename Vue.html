@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Vue.js Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Sidebar Styles */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            backdrop-filter: blur(10px);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        #sidebar.show {
+            transform: translateX(0);
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px 20px;
+            border-bottom: 1px solid white;
+        }
+
+        #sidebar ul li a {
+            color: #ff8800;
+            animation: glowBlink 1.5s infinite;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #000000;
+        }
+
+        /* Main Content */
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 0px;
+            transition: margin-left 0.3s;
+        }
+
+        /* Header */
+        header {
+            
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid #ff8800;
+            background-color: #221e1e;
+        }
+        header h1 {
+            font-family: 'Poppins','Times New Roman', cursive;
+            font-size: 3em;
+            text-align: center;
+            color: #ff8800;
+            animation: glowBlink 1.5s infinite;
+        }
+        h2 {
+            color: #ff8800;
+            text-decoration: underline;
+            animation: glowBlink 1.5s infinite;
+        }
+        @keyframes glowBlink {
+            0%, 100% {text-shadow: 0 0 5px #ff8800, 0 0 15px #ff8800;}
+            50% {text-shadow: 0 0 10px #ff8800, 0 0 25px #ff8800;}
+        }
+
+          /* Hamburger Menu */
+          .menu-icon {
+            cursor: pointer;
+            display: block;
+            width: 30px;
+            height: 25px;
+        }
+
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            margin: 4px 0;
+            transition: all 0.3s;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            #content {
+                margin-left: 0;
+            }
+
+            #sidebar {
+                width: 200px;
+                height: 400px;
+            }
+            header{
+                padding: 5px;
+            }
+            header h1{
+                font-size: 20px;
+            }
+            .menu-icon{
+                height: 20px;
+            }
+        }
+
+      
+
+        /* Smooth Animation */
+        section {
+            background-color: white;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        pre {
+            background: #333;
+            color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #0dbf6e;
+        }
+        #close-icon {
+            font-size: 20px;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <!-- Close Icon -->
+        <div id="close-icon" style="text-align: right; padding: 10px; cursor: pointer;">
+            ✖
+        </div>
+        <ul>
+        <h3>Learn More</h3>
+            <li><a href="react.html">React </a></li>
+            <li><a href="Vue.html">Vue.Js</a></li>
+            <li><a href="tailwind.html">Tailwind CSS</a></li>
+            <li><a href="ajax.html">AJAX and API Integration</a></li>
+            <li><a href="#customization">Authentication & Security</a></li>
+            <li><a href="#animations">Version Control - Git & GitHub</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div id="content">
+        <header>
+            <div class="menu-icon" id="menu-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <h1>Complete Vue.js Guide</h1>
+        </header>
+
+        <div class="container">
+            <section id="what-is-vue">
+                <h2>What is Vue.js?</h2>
+                <p>Vue.js is a progressive JavaScript framework for building user interfaces and single-page applications (SPAs).</p>
+            </section>
+
+            <!-- Why Vue.js? -->
+            <section id="why-vue">
+                <h2>Why Use Vue.js?</h2>
+                <ul>
+                    <li>Simple and Flexible</li>
+                    <li>Component-Based Architecture</li>
+                    <li>Two-Way Data Binding</li>
+                    <li>Reactive Data Handling</li>
+                    <li>Ease of Integration</li>
+                </ul>
+            </section>
+
+            <!-- Reactivity System -->
+            <section id="reactivity">
+                <h2>Reactivity System</h2>
+                <p>Vue.js uses a reactivity system to track dependencies and automatically update the DOM when data changes.</p>
+            </section>
+
+            <!-- Components -->
+            <section id="components">
+                <h2>Components</h2>
+                <p>Components are reusable, independent blocks of code that allow you to build complex UIs.</p>
+                <pre><code>
+Vue.component('hello-world', {
+    template: '<h1>Hello, World!</h1>'
+});
+
+new Vue({
+    el: '#app'
+});
+                </code></pre>
+            </section>
+
+            <!-- Directives -->
+            <section id="directives">
+                <h2>Directives</h2>
+                <p>Directives are special tokens in the DOM that tell the library to do something to a DOM element. Examples: <code>v-if</code>, <code>v-for</code>, <code>v-bind</code>.</p>
+            </section>
+
+            <!-- Computed Properties -->
+            <section id="computed-properties">
+                <h2>Computed Properties</h2>
+                <p>Used for complex logic derived from existing data. Cached until dependencies change.</p>
+                <pre><code>
+computed: {
+    fullName() {
+        return this.firstName + ' ' + this.lastName;
+    }
+}
+                </code></pre>
+            </section>
+
+            <!-- Watchers -->
+            <section id="watchers">
+                <h2>Watchers</h2>
+                <p>Used to watch and react to data changes.</p>
+                <pre><code>
+watch: {
+    name(newVal, oldVal) {
+        console.log('Name changed from', oldVal, 'to', newVal);
+    }
+}
+                </code></pre>
+            </section>
+
+            <!-- Vue Router -->
+            <section id="vue-router">
+                <h2>Vue Router</h2>
+                <p>Vue Router is the official routing library for Vue.js, used to create and manage navigation between different views or pages in a Single Page Application (SPA).
+                     It allows developers to define different URL paths in their applications and map them to components, making it easy to build dynamic, client-side routing.</p>
+            </section>
+
+            <section id="key">
+                <h2>Key Features of Vue Router</h2>
+
+                <li>Nested Routes: Supports nested routing, allowing complex UI structures with parent-child relationships.</li>
+                <li>Dynamic Routing: Define routes that include dynamic segments, like /user/:id, where :id is a variable.</li>
+                <li>Route Guards: Provides navigation guards to control access to certain routes based on authentication or other conditions.</li>
+                <li>History Mode: Uses the HTML5 History API to create clean URLs without hash symbols (#).</li>
+                <li>Lazy Loading: Supports asynchronous component loading to optimize performance by splitting code into smaller chunks.</li>
+                <li>Named Routes & Views: Allows assigning names to routes and rendering multiple views simultaneously.</li>
+                <li>Scroll Behavior Control: Handles how the scroll position is managed when navigating between routes.</li>
+
+            </section>
+
+            <section id="install">
+                <h2>Installation</h2>
+
+                <p>If you’re using Vue 3:</p>
+                <pre><code>
+                npm install vue-router@next
+                </code></pre>
+                <p>If you’re using Vue 2:</p>
+                <pre><code>
+                    npm install vue-router
+                </code>
+            </section>
+
+            <section id="basic">
+                <h2>Basic Example (Vue 3)</h2>
+
+                <li>Creating a Router File (router/index.js):</li>
+                <pre><code>
+                import { createRouter, createWebHistory } from 'vue-router';
+                import Home from '../views/Home.vue';
+                import About from '../views/About.vue';
+
+                const routes = [
+                { path: '/', name: 'Home', component: Home },
+                { path: '/about', name: 'About', component: About }
+                ];
+
+                const router = createRouter({
+                history: createWebHistory(),
+                routes
+                });
+
+                export default router;
+                </code></pre>
+            </section>
+            
+            <section id="basic2">
+            <h2>Using Router in a Vue App (main.js):</h2>
+                <pre><code>
+                import { createApp } from 'vue';
+                import App from './App.vue';
+                import router from './router';
+
+                const app = createApp(App);
+                app.use(router);
+                app.mount('#app');
+                </code></pre>
+            </section>
+
+            <section id="template">
+            <h2>Defining Navigation Links (App.vue):</h2>
+            <pre><code>&lt;template&gt;
+                &lt;div&gt;
+                  &lt;nav&gt;
+                    &lt;router-link to="/"&gt;Home&lt;/router-link&gt;
+                    &lt;router-link to="/about"&gt;About&lt;/router-link&gt;
+                  &lt;/nav&gt;
+                  &lt;router-view&gt;&lt;/router-view&gt;
+                &lt;/div&gt;
+              &lt;/template&gt;
+              </code></pre>
+
+            <h3>How It Works</h3>
+
+            <li>The router-link component is used to navigate between pages without refreshing the page.</li>
+            <li>The router-view component acts as a placeholder where matched components are rendered based on the current URL.</li>
+            
+            <h3>Why Use Vue Router?</h3>
+
+            <li>Makes URL handling and navigation straightforward in Vue applications.</li>
+            <li>Provides robust tools for authentication, access control, and page transitions.</li>
+            <li>Improves performance with lazy loading and code-splitting.</li>
+            </section>
+
+            </section>
+
+            <!-- State Management -->
+            <section id="state-management">
+                <h2>State Management</h2>
+                <p>Vuex provides centralized state management for complex apps.</p>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        const sections = document.querySelectorAll('section');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => observer.observe(section));
+
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuIcon.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+        });
+
+        const links = document.querySelectorAll('#sidebar ul li a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+            });
+        });
+        const closeIcon = document.getElementById('close-icon');
+
+        closeIcon.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        });
+    </script>
+</body>
+</html>

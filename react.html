@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete React Guide</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        header h1 {
+            font-family: 'Poppins','Times New Roman', cursive;
+            font-size: 3em;
+            text-align: center;
+            color: #ff8800;
+            animation: glowBlink 1.5s infinite;
+        }
+        @keyframes glowBlink {
+            0%, 100% {text-shadow: 0 0 5px #ff8800, 0 0 15px #ff8800;}
+            50% {text-shadow: 0 0 10px #ff8800, 0 0 25px #ff8800;}
+        }
+
+        /* Header */
+        header {
+            
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid #ff8800;
+            background-color: #221e1e;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            color: #ff8800;
+            text-decoration: underline;
+            animation: glowBlink 1.5s infinite;
+        }
+
+        ul {
+            margin-left: 20px;
+        }
+
+        pre {
+            background: #333;
+            color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #0dbf6e;
+        }
+         /* Hamburger Menu */
+         .menu-icon {
+            cursor: pointer;
+            display: block;
+            width: 30px;
+            height: 25px;
+        }
+
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            margin: 4px 0;
+            transition: all 0.3s;
+        }
+        
+        /* Sidebar Styles */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            backdrop-filter: blur(10px);
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        #sidebar.show {
+            transform: translateX(0);
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px 20px;
+            border-bottom: 1px solid white;
+        }
+
+        #sidebar ul li a {
+            color: #ff8800;
+            animation: glowBlink 1.5s infinite;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #000000;
+        }
+
+        /* Main Content */
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 0px;
+            transition: margin-left 0.3s;
+        }
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            #content {
+                margin-left: 0;
+            }
+
+            #sidebar {
+                width: 200px;
+                height: 400px;
+            }
+            header{
+                padding: 5px;
+            }
+            header h1{
+                font-size: 30px;
+            }
+            .menu-icon{
+                height: 20px;
+            }
+        }
+        #close-icon {
+            font-size: 20px;
+            color: white;
+        }
+        h3{
+            color: white;
+            text-align: center;
+        }
+        
+        
+    </style>
+</head>
+<body>
+     <!-- Sidebar -->
+     <div id="sidebar">
+        <!-- Close Icon -->
+        <div id="close-icon" style="text-align: right; padding: 10px; cursor: pointer;">
+            ✖
+        </div>
+        <ul>
+        <h3>Learn More</h3>
+            <li><a href="react.html">React </a></li>
+            <li><a href="Vue.html">Vue.Js</a></li>
+            <li><a href="tailwind.html">Tailwind CSS</a></li>
+            <li><a href="ajax.html">AJAX and API Integration</a></li>
+            <li><a href="#customization">Authentication & Security</a></li>
+            <li><a href="#animations">Version Control - Git & GitHub</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <div class="menu-icon" id="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <h1>Complete React Guide</h1>
+    </header>
+    
+    <div id="content">
+
+    <div class="container">
+        <!-- What is React -->
+        <section>
+            <h2>What is React?</h2>
+            <p>
+                <strong>React</strong> is a <strong>JavaScript library</strong> developed by Facebook for building user interfaces. It allows developers to build reusable UI components and offers high performance with the use of a Virtual DOM.
+            </p>
+        </section>
+
+        <!-- Why Use React -->
+        <section>
+            <h2>Why Use React?</h2>
+            <ul>
+                <li><strong>Component-Based Architecture:</strong> Reusable UI components.</li>
+                <li><strong>Virtual DOM:</strong> Efficient updating and rendering of UI.</li>
+                <li><strong>Declarative UI:</strong> Easy to debug and understand.</li>
+                <li><strong>Hooks:</strong> Manage state and side effects in functional components.</li>
+                <li><strong>Large Ecosystem:</strong> Huge community and powerful libraries.</li>
+            </ul>
+        </section>
+
+        <!-- Handling Forms -->
+        <section>
+            <h2>Handling Forms</h2>
+            <p>Handling forms in React is straightforward using state management.</p>
+            <pre><code>
+import React, { useState } from 'react';
+
+function FormExample() {
+    const [name, setName] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        alert(Hello, ${name});
+    }
+
+    return (
+        &lt;form onSubmit={handleSubmit}&gt;
+            &lt;input 
+                type="text" 
+                value={name} 
+                onChange={(e) => setName(e.target.value)} 
+                placeholder="Enter your name" 
+            /&gt;
+            &lt;button type="submit"&gt;Submit&lt;/button&gt;
+        &lt;/form&gt;
+    );
+}
+
+export default FormExample;
+            </code></pre>
+        </section>
+
+        <!-- Context API -->
+        <section>
+            <h2>Context API</h2>
+            <p>Provides a way to pass data through the component tree without having to pass props down manually at every level.</p>
+            <pre><code>
+import React, { createContext, useContext } from 'react';
+
+const UserContext = createContext();
+
+function App() {
+    return (
+        &lt;UserContext.Provider value="Ade"&gt;
+            &lt;Welcome /&gt;
+        &lt;/UserContext.Provider&gt;
+    );
+}
+
+function Welcome() {
+    const user = useContext(UserContext);
+    return &lt;h1&gt;Hello, {user}!&lt;/h1&gt;;
+}
+
+export default App;
+            </code></pre>
+        </section>
+
+        <!-- React Router -->
+        <section>
+            <h2>React Router</h2>
+            <pre><code>
+npm install react-router-dom
+            </code></pre>
+            <pre><code>
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './Home';
+import About from './About';
+
+function App() {
+    return (
+        &lt;BrowserRouter&gt;
+            &lt;Routes&gt;
+                &lt;Route path="/" element={&lt;Home /&gt;} /&gt;
+                &lt;Route path="/about" element={&lt;About /&gt;} /&gt;
+            &lt;/Routes&gt;
+        &lt;/BrowserRouter&gt;
+    );
+}
+
+export default App;
+            </code></pre>
+        </section>
+
+        <!-- Redux -->
+        <section>
+            <h2>Redux</h2>
+            <pre><code>
+npm install @reduxjs/toolkit react-redux
+            </code></pre>
+            <pre><code>
+import { createSlice, configureStore } from '@reduxjs/toolkit';
+import { Provider, useDispatch, useSelector } from 'react-redux';
+
+const counterSlice = createSlice({
+    name: 'counter',
+    initialState: 0,
+    reducers: {
+        increment: state => state + 1,
+        decrement: state => state - 1
+    }
+});
+
+const store = configureStore({
+    reducer: counterSlice.reducer
+});
+
+export { counterSlice, store };
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Advanced React Concepts</h2>
+
+            <h3>Hooks</h3>
+            <p>Hooks allow functional components to have state and lifecycle features.</p>
+            <pre><code>
+import React, { useState, useEffect } from 'react';
+
+function Counter() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+        document.title = You clicked ${count} times;
+    }, [count]);
+
+    return (
+        &lt;div&gt;
+            &lt;p&gt;Count: {count}&lt;/p&gt;
+            &lt;button onClick={() => setCount(count + 1)}&gt;Increment&lt;/button&gt;
+        &lt;/div&gt;
+    );
+}
+            </code></pre>
+
+            <h3>Error Boundaries</h3>
+            <pre><code>
+import React, { Component } from 'react';
+
+class ErrorBoundary extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { hasError: false };
+    }
+
+    static getDerivedStateFromError() {
+        return { hasError: true };
+    }
+
+    render() {
+        if (this.state.hasError) {
+            return &lt;h1&gt;Something went wrong.&lt;/h1&gt;;
+        }
+        return this.props.children;
+    }
+}
+            </code></pre>
+        </section>
+
+        <!-- Testing React Apps -->
+        <section>
+            <h2>Testing React Apps</h2>
+            <p>React applications can be tested using tools like Jest and React Testing Library.</p>
+            <pre><code>
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+test('renders hello world text', () => {
+  render(&lt;App /&gt;);
+  const linkElement = screen.getByText(/Hello World/i);
+  expect(linkElement).toBeInTheDocument();
+});
+            </code></pre>
+        </section>
+
+        <!-- Deployment -->
+        <section>
+            <h2>Deployment</h2>
+            <p>React applications can be deployed to platforms like:</p>
+            <ul>
+                <li>Vercel</li>
+                <li>Netlify</li>
+                <li>GitHub Pages</li>
+                <li>Amazon S3</li>
+            </ul>
+            <p>To deploy to Vercel:</p>
+            <pre><code>
+npm install -g vercel
+vercel
+            </code></pre>
+        </section>
+
+    </div>
+    </div>
+
+    <script>
+        // Animation for fade-in effect
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuIcon.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+        });
+
+        // Close Sidebar when link is clicked (for mobile view)
+        const links = document.querySelectorAll('#sidebar ul li a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+            });
+        });
+        const closeIcon = document.getElementById('close-icon');
+
+        closeIcon.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        });
+    </script>
+</body>
+</html>
