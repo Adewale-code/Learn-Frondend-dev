@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Free Classes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="assets/js/quiz.js"></script>
 </head>
 <body>
     <div id="navBar">
@@ -13,18 +14,244 @@
         <a href="free.html"><i class="fa-brands fa-html5 icon"></i>Free Classes</a>
         <a href="advanced.html"><i class="fa-brands fa-js icon"></i>Advanced Classes</a>
     </div>
+    <header>
+        <div class="menu-icon" id="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <h1>Free Classes</h1>
+    </header>
 
     <div id="content">
+        <div class="container">
+            <div class="free">
         <h2>Free Classes</h2>
         <p>Start with the basics of:</p>
         <ul>
             <li>HTML</li>
             <li>CSS</li>
             <li>JavaScript</li>
+            <li>Bootstrap</li>
+            <li>PHP</li>
+            <li>MySQL</li>
         </ul>
+        </div>
         <button onclick="startQuiz()">Take a Quiz</button>
-        <div id="quiz"></div>
+        
+    
+        <!-- Sections for Each Topic -->
+        <section class="section fade-in" id="htmlSection">
+            <h2>HTML</h2> 
+            <p>HTML (Hypertext Markup Language) is the structure of web pages.</p>
+            <button id="subscribeBtn"><a href="html.html">Learn More</a></button>
+            <pre><code>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Example HTML</title>
+    </head>
+    <body>
+        <h1>Hello, World!</h1>
+        <p>This is a paragraph.</p>
+    </body>
+    </html>
+            </code></pre>
+        </section>
+    
+        <section class="section fade-in" id="cssSection">
+            <h2>CSS</h2>
+            <p>CSS (Cascading Style Sheets) styles and layouts web pages.</p>
+            <pre><code>
+    body {
+        background-color: lightblue;
+    }
+    h1 {
+        color: navy;
+        text-align: center;
+    }
+            </code></pre>
+        </section>
+    
+        <section class="section fade-in" id="jsSection">
+            <h2>JavaScript</h2>
+            <p>JavaScript makes web pages interactive.</p>
+            <pre><code>
+    function greet() {
+        alert("Hello, World!");
+    }
+    greet();
+            </code></pre>
+        </section>
+    
+        <section class="section fade-in" id="bootstrapSection">
+            <h2>Bootstrap</h2>
+            <p>Bootstrap is a powerful CSS framework for building responsive websites quickly.</p>
+            <pre><code>
+    <button class="btn btn-primary">Click Me</button>
+            </code></pre>
+        </section>
+    
+        <section class="section fade-in" id="phpSection">
+            <h2>PHP</h2>
+            <p>PHP (Hypertext Preprocessor) is a server-side scripting language for dynamic web content.</p>
+            <pre><code>
+    <?php
+    echo "Hello, World!";
+    ?>
+            </code></pre>
+        </section>
+    
+        <section class="section fade-in" id="mysqlSection">
+            <h2>MySQL</h2>
+            <p>MySQL is a popular database management system used with PHP.</p>
+            <pre><code>
+    CREATE DATABASE myDatabase;
+    CREATE TABLE Users (id INT, name VARCHAR(50));
+            </code></pre>
+        </section>
     </div>
-    <script src="quiz.js"></script>
+    </div>
+    
+
+    <style>
+          /* Blinking Floating Subscribe Button */
+          #subscribeBtn {
+            padding: 5px;
+            background-color:#0dbf6e;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            animation: blink 1s infinite;
+        }
+        #subscribeBtn a{
+            font-size: large;
+            color: white;
+            text-decoration: none;
+        }
+        .free h2, ul{
+            color: black;
+        }
+        .free p{
+            color: black;
+        }
+        header {
+            
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid #ff8800;
+            background-color: #221e1e;
+        }
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Styling for Sections */
+.section {
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid #ffc107;
+    border-radius: 5px;
+    width: 80%;
+    background-color: #1d1d1d;
+    color: white;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s, transform 1s;
+    
+}
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+/* Animation Trigger */
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Code Block Styling */
+pre {
+    background: #333;
+    color: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+code {
+    color: #0dbf6e;
+}
+
+/* Styling Content Wrapper */
+ /* Main Content */
+ #content {
+    flex-grow: 1;
+    padding: 20px;
+    
+}
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #content {
+        margin-left: 0;
+    }
+}
+
+/* Styling Quiz Button */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #ffc107;
+    color: #1d1d1d;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff9800;
+}
+
+    </style>
+    
+    <script>
+        // Function to reveal sections on scroll
+function revealSections() {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        const sectionTop = section.getBoundingClientRect().top;
+        const triggerPoint = window.innerHeight - 100;
+
+        if (sectionTop < triggerPoint) {
+            section.classList.add('show');
+        }
+    });
+}
+
+// Listen for scroll event
+window.addEventListener('scroll', revealSections);
+
+// Trigger reveal for sections already in view (on reload)
+document.addEventListener('DOMContentLoaded', revealSections);
+    </script>
 </body>
 </html>
