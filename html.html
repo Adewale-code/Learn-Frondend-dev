@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Tutorial</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #121212;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        header {
+            
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid #ff8800;
+            background-color: #221e1e;
+        }
+        section {
+
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1000px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        /* Main Content */
+        main {
+            flex-grow: 1;
+            padding: 20px;
+            margin-left: 0px;
+            transition: margin-left 0.3s;
+        }
+        code {
+            background-color: #e8e8e8;
+            padding: 2px 4px;
+            border-radius: 4px;
+        }
+        pre {
+            background-color: #e8e8e8;
+            padding: 10px;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        h2 {
+            color: #4CAF50;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+ 
+/* General Styling */
+section {
+    margin: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Textarea Styling */
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: monospace;
+    background-color: #ffffff;
+    resize: none;
+}
+
+/* Button Styling */
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Output Frame Styling */
+iframe {
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    width: 100%;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) { /* For tablets and smaller devices */
+    section {
+        margin: 20px;
+        padding: 15px;
+    }
+    
+    textarea {
+        height: 180px;
+    }
+}
+
+@media (max-width: 480px) { /* For mobile phones */
+    section {
+        margin: 10px;
+        padding: 10px;
+    }
+    
+    textarea {
+        height: 150px;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+
+        /* Blinking Floating Subscribe Button */
+        #subscribeBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            animation: blink 1s infinite;
+        }
+        #subscribeBtn a{
+            font-size: large;
+            color: white;
+            text-decoration: none;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        @media (max-width: 768px) {
+            main {
+                margin-left: 0;
+            }
+
+            header{
+                padding: 5px;
+            }
+            header h1{
+                font-size: 30px;
+            }
+        }
+        /* General Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 16px;
+    text-align: left;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table Header Styling */
+th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+}
+
+/* Table Body Styling */
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    table, th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+}
+
+header a{
+    color: white;
+    text-decoration: none;
+    background-color: #4CAF50;
+}
+        
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1><i class="fa-solid fa-code icon"></i>HTML Tutorial</h1>
+        <a href="free.html">Back</a>
+    </header>
+    
+    <main>
+        <div class="container">
+        <!-- Introduction to HTML -->
+        <section>
+            <h2>What is HTML?</h2>
+            <p>HTML (HyperText Markup Language) is the standard language used to create <strong>web pages and web applications</strong>. It's the <strong>foundation of all websites</strong>, providing the structure and content of a webpage, which is then styled with CSS and made interactive with JavaScript.</p>
+        </section>
+
+        <!-- Basics of HTML -->
+        <section>
+            <h2>Basics of HTML</h2>
+            <p>HTML is a <strong>markup language</strong> using <strong>tags</strong> to structure content.</p>
+            <p>Tags are written as:</p>
+            <pre><code>&lt;tagname&gt;Content&lt;/tagname&gt;</code></pre>
+        </section>
+
+        <!-- HTML Structure -->
+        <section>
+            <h2>HTML Structure</h2>
+            <p>A basic HTML document looks like this:</p>
+            <pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;My First HTML Page&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+    &lt;p&gt;This is a paragraph of text.&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+            </pre>
+        </section>
+
+       <!-- Common HTML Tags -->
+<section>
+    <h2>Common HTML Tags</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Tag</th>
+                <th>Description</th>
+                <th>Example Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>&lt;h1&gt; - &lt;h6&gt;</code></td>
+                <td>Headings from largest (h1) to smallest (h6)</td>
+                <td><code>&lt;h1&gt;Title&lt;/h1&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;p&gt;</code></td>
+                <td>Paragraph</td>
+                <td><code>&lt;p&gt;This is a paragraph.&lt;/p&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;a&gt;</code></td>
+                <td>Hyperlink</td>
+                <td><code>&lt;a href="https://example.com"&gt;Visit&lt;/a&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;img&gt;</code></td>
+                <td>Image</td>
+                <td><code>&lt;img src="image.jpg" alt="Description"&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;div&gt;</code></td>
+                <td>Division or Block Container</td>
+                <td><code>&lt;div&gt;Content Here&lt;/div&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;span&gt;</code></td>
+                <td>Inline Container</td>
+                <td><code>&lt;span&gt;Inline text&lt;/span&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;ul&gt;, &lt;ol&gt;, &lt;li&gt;</code></td>
+                <td>Lists (Unordered & Ordered)</td>
+                <td>
+                    <code>
+                        &lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>&lt;table&gt;, &lt;tr&gt;, &lt;td&gt;, &lt;th&gt;</code></td>
+                <td>Table Structure</td>
+                <td>
+                    <code>
+                        &lt;table&gt;&lt;tr&gt;&lt;th&gt;Header&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Data&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>&lt;form&gt;</code></td>
+                <td>Form for User Input</td>
+                <td>
+                    <code>
+                        &lt;form&gt;&lt;input type="text"&gt;&lt;button&gt;Submit&lt;/button&gt;&lt;/form&gt;
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>&lt;input&gt;</code></td>
+                <td>Input Field</td>
+                <td><code>&lt;input type="text" placeholder="Enter text"&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;button&gt;</code></td>
+                <td>Clickable Button</td>
+                <td><code>&lt;button&gt;Click Me&lt;/button&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;textarea&gt;</code></td>
+                <td>Multi-line Text Input</td>
+                <td><code>&lt;textarea&gt;Type here...&lt;/textarea&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;select&gt;, &lt;option&gt;</code></td>
+                <td>Dropdown Menu</td>
+                <td>
+                    <code>
+                        &lt;select&gt;&lt;option&gt;Option 1&lt;/option&gt;&lt;/select&gt;
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>&lt;iframe&gt;</code></td>
+                <td>Embedded Content</td>
+                <td><code>&lt;iframe src="page.html"&gt;&lt;/iframe&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;audio&gt;</code></td>
+                <td>Audio Player</td>
+                <td><code>&lt;audio controls src="audio.mp3"&gt;&lt;/audio&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;video&gt;</code></td>
+                <td>Video Player</td>
+                <td><code>&lt;video controls src="video.mp4"&gt;&lt;/video&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;nav&gt;</code></td>
+                <td>Navigation Links</td>
+                <td><code>&lt;nav&gt;&lt;a href="#home"&gt;Home&lt;/a&gt;&lt;/nav&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;section&gt;</code></td>
+                <td>Section of Content</td>
+                <td><code>&lt;section&gt;Content here...&lt;/section&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;article&gt;</code></td>
+                <td>Article Content</td>
+                <td><code>&lt;article&gt;Article content here...&lt;/article&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;aside&gt;</code></td>
+                <td>Sidebar Content</td>
+                <td><code>&lt;aside&gt;Related links here...&lt;/aside&gt;</code></td>
+            </tr>
+            <tr>
+                <td><code>&lt;footer&gt;</code></td>
+                <td>Footer Section</td>
+                <td><code>&lt;footer&gt;Footer information here...&lt;/footer&gt;</code></td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+
+        <!-- HTML Forms -->
+        <section>
+            <h2>HTML Forms</h2>
+            <p>HTML forms are used to collect user input. Here’s an example:</p>
+            <pre>
+<code>
+&lt;form action="submit.php" method="POST"&gt;
+    &lt;label for="name"&gt;Name:&lt;/label&gt;
+    &lt;input type="text" id="name" name="name" required&gt;
+    
+    &lt;label for="email"&gt;Email:&lt;/label&gt;
+    &lt;input type="email" id="email" name="email" required&gt;
+    
+    &lt;button type="submit"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</code>
+            </pre>
+        </section>
+
+        <!-- HTML Comments -->
+        <section>
+            <h2>Comments in HTML</h2>
+            <p>Comments are added to HTML for readability and notes:</p>
+            <pre><code>&lt;!-- This is a comment --&gt;</code></pre>
+        </section>
+
+        <!-- Best Practices -->
+        <section>
+            <h2>Best Practices</h2>
+            <ul>
+                <li>Use Semantic Tags: Like <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;section&gt;</code>, etc.</li>
+                <li>Always Declare <code>&lt;!DOCTYPE html&gt;</code>.</li>
+                <li>Use <code>alt</code> Attribute for Images for better accessibility.</li>
+                <li>Keep Code Indented and Well-Formatted for readability.</li>
+            </ul>
+        </section>
+
+        <!-- HTML Code Editor Section -->
+<section>
+    <h2>Try Your HTML Code Here</h2>
+    <p>Write your HTML code below and click "Run Code" to see the result instantly!</p>
+    
+    <div>
+        <textarea id="htmlCode" rows="10" cols="60" placeholder="Write your HTML code here..."></textarea><br><br>
+        <button onclick="runCode()">Run Code</button>
+    </div>
+
+    <h3>Output:</h3>
+    <iframe id="outputFrame" style="width: 100%; height: 300px; border: 1px solid #ccc;"></iframe>
+</section>
+
+<!-- JavaScript for Code Execution -->
+<script>
+    function runCode() {
+        const htmlCode = document.getElementById("htmlCode").value;
+        const iframe = document.getElementById("outputFrame");
+        
+        iframe.srcdoc = htmlCode;
+    }
+</script>
+
+        </div>
+    </main>
+    
+    <!-- Floating Subscribe Button -->
+    <button id="subscribeBtn"><a href="advanced.html">Subscribe</a></button>
+
+    <script>
+        // Animation for fade-in effect
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
