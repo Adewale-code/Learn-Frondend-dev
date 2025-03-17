@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Advanced Web Development</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://js.paystack.co/v1/inline.js"></script>
 </head>
@@ -30,8 +30,10 @@
                     <li>Certification & Progress Tracking</li>
                 </ul>
                 <input type="email" id="emailInput" placeholder="Enter your email" required>
-                <button onclick="payWithPaystack(5000, 'Weekly')">₦5000 Weekly</button>
-                <button onclick="payWithPaystack(19000, 'Monthly')">₦19,000 Monthly</button>
+                <button onclick="payWithPaystack('PLN_523wrxo1hlluilq', 'Weekly')">₦5000 Weekly</button>
+                <button onclick="payWithPaystack('PLN_el75f42vku6x74d', 'Monthly')">₦19,000 Monthly</button>
+                <br><br>
+                <button onclick="cancelSubscription()">Cancel Subscription</button>
             </div>
         </div>
     </div>
@@ -48,49 +50,53 @@
         }
 
         // Paystack Integration
-        function payWithPaystack(amount, planType) {
-            const email = document.getElementById('emailInput').value;
-
+        function payWithPaystack(planCode, plan) {
+            const email = document.getElementById('emailInput').value.trim();
+        
             if (!email) {
-                alert("Please enter your email before proceeding.");
+                alert('Please enter a valid email address.');
                 return;
             }
-
-            let handler = PaystackPop.setup({
-                key: 'YOUR_PUBLIC_KEY', // Replace with your Paystack public key
+        
+            var handler = PaystackPop.setup({
+                key: 'pk_live_81c8c92f507e0de02164c6698b1d1966febc90a1',  // Replace with your Paystack public key
                 email: email,
-                amount: amount * 100,
+                plan: planCode,  // Use plan code for auto-renewal
                 currency: 'NGN',
-                callback: function(response) {
-                    alert('Payment successful! Reference: ' + response.reference);
-
-                    // Store user subscription data in localStorage
-                    const currentDate = new Date();
-                    const expirationDate = new Date();
-
-                    if (planType === 'Weekly') {
-                        expirationDate.setDate(currentDate.getDate() + 7);
-                    } else if (planType === 'Monthly') {
-                        expirationDate.setDate(currentDate.getDate() + 30);
-                    }
-
-                    const subscriptionData = {
+                callback: function (response) {
+                    alert('Subscription Successful! Reference: ' + response.reference);
+                    // Save subscription details in localStorage
+                    localStorage.setItem('subscriptionStatus', JSON.stringify({
+                        accessGranted: true,
+                        plan: plan,
                         email: email,
-                        plan: planType,
-                        expiration: expirationDate.toISOString()
-                    };
-
-                    localStorage.setItem('subscriptionData', JSON.stringify(subscriptionData));
-
-                    // Redirect to access page
-                    window.location.href = 'access.html';
+                        reference: response.reference
+                    }));
+                    window.location.reload();
                 },
-                onClose: function() {
-                    alert('Payment process was closed.');
+                onClose: function () {
+                    alert('Payment was cancelled.');
                 }
             });
+        
             handler.openIframe();
         }
+        
+        // Function to cancel subscription
+        function cancelSubscription() {
+            const subscription = JSON.parse(localStorage.getItem('subscriptionStatus'));
+        
+            if (subscription && subscription.accessGranted) {
+                if (confirm('Are you sure you want to cancel your subscription?')) {
+                    localStorage.removeItem('subscriptionStatus');
+                    alert('Subscription cancelled successfully.');
+                    window.location.reload();
+                }
+            } else {
+                alert('No active subscription found.');
+            }
+        }
+        
     </script>
 </body>
 </html>
