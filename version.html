@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version Control - Git & GitHub</title>
+    <link rel="stylesheet" href="assets/css/style.cs">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+          /* Header */
+          /* Header */
+          header {
+            
+            color: white;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-bottom: 2px solid #ff6b6b;
+            background-color: #ff6b6b;
+        }
+        header h1 {
+            font-family: 'Poppins','Times New Roman', cursive;
+            font-size: 3em;
+            text-align: center;
+            color: white;
+            animation: glowBlink 1.5s infinite;
+        }
+        
+
+          /* Smooth Animation */
+          .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        
+        /* Smooth Animation */
+        section {
+            background-color: #333;
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+             /* Sidebar Styles */
+             #sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 250px;
+                background-color: #121212;
+                padding-top: 20px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
+    
+            #sidebar.show {
+                transform: translateX(0);
+            }
+    
+            #sidebar ul {
+                list-style-type: none;
+                padding: 0;
+            }
+    
+            #sidebar ul li {
+                padding: 15px 20px;
+                border-bottom: 1px solid white;
+            }
+    
+            #sidebar ul li a {
+                color: #ff6b6b;
+                animation: glowBlink 1.5s infinite;
+                text-decoration: none;
+                display: block;
+                font-weight: bold;
+            }
+    
+            #sidebar ul li a:hover {
+                background-color: #ffffff;
+            }
+       
+        #close-icon {
+            font-size: 20px;
+            color: white;
+        }
+        
+        p, pre {
+            margin: 10px 0;
+        }
+
+        pre {
+            background-color: #272727;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            border-left: 3px solid #ff6b6b;
+        }
+
+        code {
+            color: #0db9d7;
+        }
+         /* Hamburger Menu */
+         .menu-icon {
+            cursor: pointer;
+            display: block;
+            width: 30px;
+            height: 25px;
+        }
+
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            margin: 4px 0;
+            transition: all 0.3s;
+        }
+         /* Mobile Responsive */
+         @media (max-width: 768px) {
+            #content {
+                margin-left: 0;
+            }
+
+            #sidebar {
+                width: 200px;
+                height: 550px;
+            }
+            header{
+                padding: 5px;
+            }
+            header h1{
+                font-size: 20px;
+            }
+            .menu-icon{
+                height: 20px;
+            }
+        }
+    </style>
+
+</head>
+<body>
+    <!-- Sidebar -->
+    <div id="sidebar">
+        <!-- Close Icon -->
+        <div id="close-icon" style="text-align: right; padding: 10px; cursor: pointer;">
+            ✖
+        </div>
+        <ul>
+        <h3>Learn More</h3>
+            <li><a href="react.html">React </a></li>
+            <li><a href="Vue.html">Vue.Js</a></li>
+            <li><a href="tailwind.html">Tailwind CSS</a></li>
+            <li><a href="ajax.html">AJAX and API Integration</a></li>
+            <li><a href="security.html">Authentication & Security</a></li>
+            <li><a href="version.html">Version Control - Git & GitHub</a></li>
+        </ul>
+    </div>
+    <!-- Main Content -->
+    <div id="content">
+        <header>
+            <div class="menu-icon" id="menu-icon">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        <h1>Version Control - Git GitHub</h1>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Introduction to Version Control</h2>
+            <p>Version control is a system that helps developers track and manage changes to code over time. Git is a popular version control tool, and GitHub is a platform for hosting and sharing Git repositories.</p>
+        </section>
+
+        <section>
+            <h2>Why Use Version Control?</h2>
+            <ul>
+                <li><strong>Collaboration:</strong> Allows multiple developers to work on a project simultaneously.</li>
+                <li><strong>Backup:</strong> Provides a secure backup of the entire codebase.</li>
+                <li><strong>Versioning:</strong> Tracks changes, making it easy to revert to previous versions.</li>
+                <li><strong>Branching:</strong> Facilitates experimentation with new features without breaking the main codebase.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Basic Git Commands</h2>
+            <pre><code>
+// Initializing a Git Repository
+git init
+
+// Checking the status of your repository
+git status
+
+// Adding files to staging area
+git add .
+
+// Committing changes
+git commit -m "Initial commit"
+
+// Pushing changes to GitHub
+git push -u origin main
+
+// Cloning a repository from GitHub
+git clone https://github.com/username/repository.git
+
+// Creating a new branch
+git branch feature-branch
+
+// Switching to a branch
+git checkout feature-branch
+
+// Merging branches
+git merge feature-branch
+            </code></pre>
+        </section>
+
+        <section>
+            <h2>Working with GitHub</h2>
+            <p>GitHub allows developers to host, share, and collaborate on Git repositories. Some basic operations include:</p>
+            <ul>
+                <li><strong>Create a Repository:</strong> Sign in to GitHub and click "New Repository" to start a new project.</li>
+                <li><strong>Push Code to GitHub:</strong> After creating your local repository, use <code>git push</code> to upload code to GitHub.</li>
+                <li><strong>Create a Pull Request:</strong> Use pull requests to suggest code changes and request reviews from collaborators.</li>
+                <li><strong>Issues & Discussions:</strong> GitHub provides tools for tracking bugs and collaborating through discussions.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Example Git Workflow</h2>
+            <pre><code>
+// Step 1: Clone the Repository
+git clone https://github.com/username/repo.git
+
+// Step 2: Create a New Branch
+git checkout -b feature-branch
+
+// Step 3: Make Changes & Stage Files
+git add .
+
+// Step 4: Commit Changes
+git commit -m "Implemented a new feature"
+
+// Step 5: Push to GitHub
+git push -u origin feature-branch
+
+// Step 6: Create a Pull Request on GitHub
+            </code></pre>
+        </section>
+        <!-- Branching and Merging -->
+        <section>
+            <h2>Branching and Merging</h2>
+            <p>Branching allows you to create separate lines of development. Merging integrates changes from different branches.</p>
+            <pre><code>
+// Create a New Branch
+git branch new-feature
+
+// Switch to the Branch
+git checkout new-feature
+
+// Merge Branches
+git checkout main
+git merge new-feature
+            </code></pre>
+        </section>
+
+        <!-- Collaborating with GitHub -->
+        <section>
+            <h2>Collaborating with GitHub</h2>
+            <p>GitHub allows teams to work together effectively using features like pull requests, issues, and forks.</p>
+            <pre><code>
+// Clone a Repository
+git clone https://github.com/username/repository.git
+
+// Create a Pull Request on GitHub
+// - Commit and push your changes to a branch
+// - Visit GitHub and create a Pull Request
+            </code></pre>
+        </section>
+
+        <!-- Handling Conflicts -->
+        <section>
+            <h2>Handling Conflicts</h2>
+            <p>Conflicts occur when changes are made to the same part of a file by different contributors. Resolving conflicts involves editing files and committing the resolved versions.</p>
+            <pre><code>
+// View Conflicted Files
+git status
+
+// Edit Files to Resolve Conflicts
+// Stage Resolved Files
+git add .
+
+// Commit Resolved Changes
+git commit -m "Resolved merge conflicts"
+            </code></pre>
+        </section>
+
+        <!-- Git Best Practices -->
+        <section>
+            <h2>Git Best Practices</h2>
+            <ul>
+                <li>Make frequent commits with descriptive messages.</li>
+                <li>Use branching for developing new features.</li>
+                <li>Regularly push changes to remote repositories.</li>
+                <li>Review code changes before merging.</li>
+            </ul>
+        </section>
+    </div>
+    </div>
+
+    <script>
+        // Animation for fade-in effect
+        const sections = document.querySelectorAll('section');
+    
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+    
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    
+        // Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const menuIcon = document.getElementById('menu-icon');
+    
+        menuIcon.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+        });
+    
+        // Close Sidebar when link is clicked (for mobile view)
+        const links = document.querySelectorAll('#sidebar ul li a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                sidebar.classList.remove('show');
+            });
+        });
+        const closeIcon = document.getElementById('close-icon');
+    
+        closeIcon.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        });
+    </script>
+
+</body>
+</html>
