@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        
+
+        .container {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 1200px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 50px;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: all 0.6s ease-out;
+        }
+
+        section.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2 {
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        pre {
+            background: #333;
+            color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        code {
+            color: #0dbf6e;
+        }
+        .subscribe-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 30px;
+            background-color: #FF6347;
+            color: white;
+            border-radius: 50px;
+            cursor: pointer;
+            animation: pulse 1.5s infinite;
+        }
+        .subscribe-btn a{
+            font-size: large;
+            color: white;
+            text-decoration: none;
+        }
+        
+        /* Blinking Effect */
+        .blink {
+            opacity: 0.5;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            pre, code {
+                font-size: 14px;
+            }
+            .subscribe-btn a{
+                font-size:medium;
+            }
+        }
+
+        @media (max-width: 480px) {
+            pre, code {
+                font-size: 12px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+            .subscribe-btn { padding: 10px 20px; font-size: 14px; }
+        }
+        header a{
+            color: white;
+            text-decoration: none;
+            background-color: #000000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>JavaScript Tutorial</h1>
+        <a href="free.html">Back</a>
+    </header>
+
+    <div class="container">
+        
+        <!-- Introduction -->
+        <section>
+            <h2>Introduction to JavaScript</h2>
+            <p>JavaScript is a versatile programming language that allows you to make web pages interactive. It can update and change both HTML and CSS, and is widely used for various applications.</p>
+        </section>
+
+        <!-- Variables -->
+        <section>
+            <h2>Variables</h2>
+            <p>Variables are used to store data. In JavaScript, you can declare variables using <code>var</code>, <code>let</code>, or <code>const</code>.</p>
+            <pre><code>let name = "Alice";
+const age = 25;
+var city = "Lagos";</code></pre>
+        </section>
+
+        <!-- Data Types -->
+        <section>
+            <h2>Data Types</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Description</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>String</td>
+                        <td>Textual data</td>
+                        <td>"Hello, World!"</td>
+                    </tr>
+                    <tr>
+                        <td>Number</td>
+                        <td>Numeric values</td>
+                        <td>42, 3.14</td>
+                    </tr>
+                    <tr>
+                        <td>Boolean</td>
+                        <td>True or False</td>
+                        <td>true, false</td>
+                    </tr>
+                    <tr>
+                        <td>Object</td>
+                        <td>Collection of key-value pairs</td>
+                        <td>{ name: "Alice", age: 25 }</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Functions -->
+        <section>
+            <h2>Functions</h2>
+            <p>Functions are reusable blocks of code. You can define them using <code>function</code> keyword or arrow functions.</p>
+            <pre><code>function greet() {
+    console.log("Hello, World!");
+}
+greet();</code></pre>
+        </section>
+
+        <!-- DOM Manipulation -->
+        <section>
+            <h2>DOM Manipulation</h2>
+            <p>JavaScript allows you to interact with and modify HTML content dynamically.</p>
+            <pre><code>document.getElementById("demo").innerHTML = "Hello, JavaScript!";</code></pre>
+        </section>
+
+        <!-- Events -->
+        <section>
+            <h2>Events</h2>
+            <p>JavaScript can respond to various events such as clicks, hover, keypress, etc.</p>
+            <pre><code>&lt;button onclick="alert('Button Clicked!')"&gt;Click Me&lt;/button&gt;</code></pre>
+        </section>
+
+        <!-- Loops -->
+        <section>
+            <h2>Loops</h2>
+            <p>Loops are used to perform repetitive tasks.</p>
+            <pre><code>for (let i = 0; i < 5; i++) {
+    console.log(i);
+}</code></pre>
+        </section>
+
+        <!-- Arrays -->
+        <section>
+            <h2>Arrays</h2>
+            <p>Arrays are used to store multiple values in a single variable.</p>
+            <pre><code>let fruits = ["Apple", "Banana", "Cherry"];
+console.log(fruits[0]);</code></pre>
+        </section>
+
+        <!-- Objects -->
+        <section>
+            <h2>Objects</h2>
+            <p>Objects are collections of related data and functions.</p>
+            <pre><code>let car = {
+    brand: "Toyota",
+    model: "Camry",
+    year: 2022
+};
+console.log(car.brand);</code></pre>
+        </section>
+    </div>
+
+    <!-- Blinking Subscribe Button -->
+    <div class="subscribe-btn"><a href="advanced.html">Subscribe To View Advanced Topic!!</a></div>
+
+    <script>
+        // Animation for fade-in effect
+        const sections = document.querySelectorAll('section');
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
