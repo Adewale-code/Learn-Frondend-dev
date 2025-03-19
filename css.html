@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Tutorial</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+     <!-- Sidebar -->
+     <div id="sidebar">
+        <!-- Close Icon -->
+        <div id="close-icon" style="text-align: right; padding: 10px; cursor: pointer;">
+            ✖
+        </div>
+        <ul>
+        <h3>Learn More</h3>
+            <li><a href="react.html">React </a></li>
+            <li><a href="Vue.html">Vue.Js</a></li>
+            <li><a href="tailwind.html">Tailwind CSS</a></li>
+            <li><a href="ajax.html">AJAX and API Integration</a></li>
+            <li><a href="security.html">Authentication & Security</a></li>
+            <li><a href="version.html">Version Control - Git & GitHub</a></li>
+        </ul>
+    </div>
+
+    <header>
+        <div class="menu-icon" id="menu-icon">
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <h1>CSS Tutorial</h1>
+        <p>Explore CSS with cool animations and various properties!</p>
+    </header>
+    
+    <main>
+        <!-- What is CSS Section -->
+        <section class="section">
+            <h2>What is CSS?</h2>
+            <p>CSS (Cascading Style Sheets) is a language used to describe the style of an HTML document. CSS defines how HTML elements should be displayed.</p>
+        </section>
+
+        <!-- CSS Syntax -->
+        <section class="section">
+            <h2>CSS Syntax</h2>
+            <div class="code-box">
+<pre>
+selector {
+    property: value;
+}
+</pre>
+            </div>
+        </section>
+
+        <!-- Inline CSS Example -->
+        <section class="section">
+            <h2>Inline CSS Example</h2>
+            <pre><code>
+            &lt;p style="color: blue; font-weight: bold;">This text is styled with inline CSS!&lt;/p&gt;
+            </pre></code>
+            <p style="color: blue; font-weight: bold;">This text is styled with inline CSS!</p>
+        </section>
+
+        <!-- Internal CSS Example -->
+        <section class="section">
+            <h2>Internal CSS Example</h2>
+            <pre><code>
+            &lt;div class="internal-example">
+                This is styled using internal CSS!
+            &lt;/div&gt;
+            </code></pre>
+            <div class="internal-example">
+                This is styled using internal CSS!
+            </div>
+        </section>
+
+        <!-- External CSS Example -->
+        <section class="section">
+            <h2>External CSS Example</h2>
+            <p>This page is styled using an external stylesheet (style.css).</p>
+        </section>
+
+        <!-- Styling with Colors -->
+        <section class="section">
+            <h2>Styling with Colors</h2>
+            <div class="color-box">This is a colorful box!</div>
+        </section>
+
+        <!-- Font Styling -->
+        <section class="section">
+            <h2>Font Styling</h2>
+            <pre><code>
+                &lt;p class="styled-text">This text is styled with custom fonts and sizes!&lt;/p&gt;
+                </code></pre>
+            <p class="styled-text">This text is styled with custom fonts and sizes!</p>
+        </section>
+
+        <!-- Flexbox Example -->
+        <section class="section">
+            <h2>Flexbox Layout</h2>
+            <div class="flex-container">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+        </section>
+
+        <!-- CSS Transitions -->
+        <section class="section">
+            <h2>CSS Transitions</h2>
+            <div class="transition-box">Hover over me!</div>
+        </section>
+
+        <!-- CSS Grid Example -->
+        <section class="section">
+            <h2>CSS Grid Layout</h2>
+            <div class="grid-container">
+                <div>Grid Item 1</div>
+                <div>Grid Item 2</div>
+                <div>Grid Item 3</div>
+                <div>Grid Item 4</div>
+            </div>
+        </section>
+
+        <!-- CSS Properties Table Section -->
+<section class="section">
+    <h2>Common CSS Properties</h2>
+    <div class="table-container">
+        <table class="css-table">
+            <thead>
+                <tr>
+                    <th>Property</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>color</td>
+                    <td>Sets the color of text.</td>
+                    <td>color: red;</td>
+                </tr>
+                <tr>
+                    <td>background-color</td>
+                    <td>Sets the background color of an element.</td>
+                    <td>background-color: blue;</td>
+                </tr>
+                <tr>
+                    <td>font-size</td>
+                    <td>Sets the size of the text.</td>
+                    <td>font-size: 16px;</td>
+                </tr>
+                <tr>
+                    <td>margin</td>
+                    <td>Sets the outer space of an element.</td>
+                    <td>margin: 10px;</td>
+                </tr>
+                <tr>
+                    <td>padding</td>
+                    <td>Sets the inner space of an element.</td>
+                    <td>padding: 10px;</td>
+                </tr>
+                <tr>
+                    <td>border</td>
+                    <td>Sets the border of an element.</td>
+                    <td>border: 1px solid black;</td>
+                </tr>
+                <tr>
+                    <td>width</td>
+                    <td>Sets the width of an element.</td>
+                    <td>width: 100px;</td>
+                </tr>
+                <tr>
+                    <td>height</td>
+                    <td>Sets the height of an element.</td>
+                    <td>height: 100px;</td>
+                </tr>
+                <tr>
+                    <td>display</td>
+                    <td>Specifies the display behavior of an element.</td>
+                    <td>display: flex;</td>
+                </tr>
+                <tr>
+                    <td>position</td>
+                    <td>Specifies the positioning method of an element.</td>
+                    <td>position: absolute;</td>
+                </tr>
+                <tr>
+                    <td>overflow</td>
+                    <td>Controls what happens to content that overflows an element's box.</td>
+                    <td>overflow: hidden;</td>
+                </tr>
+                <tr>
+                    <td>text-align</td>
+                    <td>Sets the horizontal alignment of text.</td>
+                    <td>text-align: center;</td>
+                </tr>
+                <tr>
+                    <td>font-family</td>
+                    <td>Specifies the font type for text.</td>
+                    <td>font-family: Arial, sans-serif;</td>
+                </tr>
+                <tr>
+                    <td>line-height</td>
+                    <td>Sets the space between lines of text.</td>
+                    <td>line-height: 1.5;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+        <!-- Live CSS Editor -->
+        <section class="section live-editor">
+            <h2>Try CSS Yourself!</h2>
+            <textarea id="htmlCode" placeholder="Enter your HTML here..."></textarea>
+            <textarea id="cssCode" placeholder="Enter your CSS here..."></textarea>
+            <button onclick="runCode()">Run Code</button>
+            <iframe id="output"></iframe>
+        </section>
+    </main>
+
+    <!-- Blinking Subscribe Button -->
+    <div class="subscribe-btn"><a href="advanced.html">Subscribe To View Advanced Topicd!!</div>
+    
+    <script>
+        function runCode() {
+            const htmlCode = document.getElementById('htmlCode').value;
+            const cssCode = document.getElementById('cssCode').value;
+            const output = document.getElementById('output');
+            const content = `
+                <style>${cssCode}</style>
+                ${htmlCode}
+            `;
+            output.srcdoc = content;
+        }
+        const subscribeBtn = document.querySelector('.subscribe-btn');
+        setInterval(() => {
+            subscribeBtn.classList.toggle('blink');
+        }, 1000);
+
+            // Animation for fade-in effect
+            const sections = document.querySelectorAll('section');
+
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, { threshold: 0.1 });
+    
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+    
+            // Sidebar Toggle
+            const sidebar = document.getElementById('sidebar');
+            const menuIcon = document.getElementById('menu-icon');
+    
+            menuIcon.addEventListener('click', () => {
+                sidebar.classList.toggle('show');
+            });
+    
+            // Close Sidebar when link is clicked (for mobile view)
+            const links = document.querySelectorAll('#sidebar ul li a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    sidebar.classList.remove('show');
+                });
+            });
+            const closeIcon = document.getElementById('close-icon');
+    
+            closeIcon.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+            });
+    </script>
+
+    <style>
+        /* General Styling */
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+}
+/* Live Editor Styling */
+.live-editor textarea {
+    width: 48%;
+    height: 150px;
+    margin: 10px 1%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.live-editor button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.live-editor button:hover {
+    background-color: #45a049;
+}
+
+#output {
+    width: 100%;
+    height: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+/* Table Styling */
+.table-container {
+    overflow-x: auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.css-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+}
+
+.css-table th, .css-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.css-table th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.css-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .css-table th, .css-table td {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .css-table th, .css-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+         /* Hamburger Menu */
+         .menu-icon {
+            cursor: pointer;
+            display: block;
+            width: 30px;
+            height: 25px;
+        }
+
+        .menu-icon div {
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            margin: 4px 0;
+            transition: all 0.3s;
+        }
+        #close-icon {
+            font-size: 20px;
+            color: white;
+        }
+        h3{
+            color: white;
+            text-align: center;
+        }
+        
+         /* Sidebar Styles */
+         #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: #121212;
+            padding-top: 20px;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        #sidebar.show {
+            transform: translateX(0);
+        }
+
+        #sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #sidebar ul li {
+            padding: 15px 20px;
+            border-bottom: 1px solid white;
+        }
+
+        #sidebar ul li a {
+            color: #ff8800;
+            animation: glowBlink 1.5s infinite;
+            text-decoration: none;
+            display: block;
+            font-weight: bold;
+        }
+
+        #sidebar ul li a:hover {
+            background-color: #000000;
+        }
+
+/* Animations & Effects */
+.animated-box {
+    padding: 15px;
+    background-color: lightcoral;
+    border-radius: 5px;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.transition-box {
+    padding: 15px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.transition-box:hover {
+    background-color: green;
+    transform: scale(1.1);
+}
+
+/* Header Styling */
+header {
+    text-align: center;
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+}
+
+/* Section Styling */
+.section {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.section {
+    margin-bottom: 50px;
+    opacity: 0;
+    transform: translateY(80px);
+    transition: all 0.6s ease-out;
+}
+
+.section.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Code Box Styling */
+.code-box {
+    background-color: #333;
+    color: #0f0;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: monospace;
+    overflow-x: auto;
+}
+
+/* Internal CSS Example */
+.internal-example {
+    padding: 10px;
+    background-color: #ffcccb;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Colors Styling */
+.color-box {
+    background-color: lightcoral;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* Font Styling */
+.styled-text {
+    font-size: 20px;
+    color: darkblue;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Flexbox Styling */
+.flex-container {
+    display: flex;
+    gap: 15px;
+}
+
+.flex-item {
+    padding: 10px;
+    background-color: lightblue;
+    border-radius: 5px;
+    transition: transform 0.3s;
+}
+
+.flex-item:hover {
+    transform: scale(1.1);
+}
+
+/* Transition Styling */
+.transition-box {
+    padding: 15px;
+    background-color: lightgreen;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.transition-box:hover {
+    background-color: green;
+    transform: scale(1.1);
+}
+
+/* Grid Styling */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.grid-container div {
+    background-color: lightgray;
+    padding: 10px;
+    border-radius: 5px;
+}
+pre {
+    background: #333;
+    color: #eee;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+code {
+    color: #0dbf6e;
+}
+
+
+/* Subscribe Button */
+.subscribe-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background-color: #FF6347;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+.subscribe-btn a{
+    font-size: large;
+    color: white;
+    text-decoration: none;
+}
+
+/* Blinking Effect */
+.blink {
+    opacity: 0.5;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+    .section { padding: 15px; margin: 10px; }
+    .flex-container { flex-direction: column; }
+    .grid-container { grid-template-columns: 1fr; }
+    .live-editor textarea { width: 100%; }
+    .menu-icon{
+        height: 20px;
+    }
+    #sidebar {
+        width: 200px;
+        height: 550px;
+    }
+    .subscribe-btn a{
+        font-size:medium;
+    }
+}
+
+@media (max-width: 480px) {
+    .section { padding: 10px; margin: 5px; }
+    .subscribe-btn { padding: 10px 20px; font-size: 14px; }
+}
+
+    </style>
+</body>
+</html>
