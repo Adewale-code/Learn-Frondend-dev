@@ -72,6 +72,38 @@
             from { transform: translateY(-30px); }
             to { transform: translateY(0); }
         }
+        /* Subscribe Button */
+.subscribe-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 15px 30px;
+    background-color: #FF6347;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+}
+.subscribe-btn a{
+    font-size: large;
+    color: white;
+    text-decoration: none;
+}
+
+/* Blinking Effect */
+.blink {
+    opacity: 0.5;
+}
+
+/* Pulse Animation */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+@media (max-width: 480px) {
+    .section { padding: 10px; margin: 5px; }
+    .subscribe-btn { padding: 10px 20px; font-size: 14px; }
+}
     </style>
 </head>
 <body>
@@ -81,6 +113,8 @@
         <button onclick="startQuiz()">Take a Quiz</button>
         <div id="quiz"></div>
     </div>
+    <!-- Blinking Subscribe Button -->
+    <div class="subscribe-btn"><a href="advanced.html">Subscribe To View Advanced Topic!!</a></div>
 
     <script>
         const questions = [
