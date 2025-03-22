@@ -11,6 +11,7 @@
         <a href="index.html">Home</a>
         <a href="free.html">Free Classes</a>
         <a href="advanced.html">Advanced Classes</a>
+        <a href="access.html">Access(Paid Users)</a>
     </div>
 
     <div id="content">
@@ -28,24 +29,39 @@
         </div>
     </div>
 
-    <script>
-        // Check User Subscription
-        const subscriptionData = JSON.parse(localStorage.getItem('subscriptionData'));
-
-        if (subscriptionData) {
-            const expirationDate = new Date(subscriptionData.expiration);
-            const currentDate = new Date();
-
-            if (currentDate > expirationDate) {
-                alert("Your subscription has expired. Please subscribe again.");
-                window.location.href = 'advanced.html';
-            } else {
-                document.getElementById('advancedContent').style.display = 'block';
+   <script>
+        // Function to check subscription status
+        function checkSubscriptionStatus() {
+            const subscriptionData = localStorage.getItem('subscriptionStatus');
+            
+            if (subscriptionData) {
+                const subscription = JSON.parse(subscriptionData);
+                
+                if (subscription.accessGranted && subscription.expiration) {
+                    const currentDate = new Date();
+                    const expirationDate = new Date(subscription.expiration);
+    
+                    if (currentDate <= expirationDate) {
+                        // Access granted since the subscription is still valid
+                        alert('Welcome! Your subscription is active.');
+                        return;
+                    } else {
+                        // Subscription expired, remove from localStorage
+                        localStorage.removeItem('subscriptionStatus');
+                        alert('Your subscription has expired. Please renew to continue.');
+                        window.location.href = 'payment.html';
+                        return;
+                    }
+                }
             }
-        } else {
-            alert("You don't have an active subscription. Please subscribe to access this content.");
-            window.location.href = 'advanced.html';
+            
+            // If no valid subscription is found, redirect to payment page
+            alert('No active subscription found. Please subscribe to gain access.');
+            window.location.href = 'payment.html';
         }
+    
+        // Call the function when the page loads
+        checkSubscriptionStatus();
     </script>
 </body>
 </html>
