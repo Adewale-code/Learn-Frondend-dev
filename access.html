@@ -31,37 +31,36 @@
 
    <script>
         // Function to check subscription status
-        function checkSubscriptionStatus() {
-            const subscriptionData = localStorage.getItem('subscriptionStatus');
-            
-            if (subscriptionData) {
-                const subscription = JSON.parse(subscriptionData);
-                
-                if (subscription.accessGranted && subscription.expiration) {
-                    const currentDate = new Date();
-                    const expirationDate = new Date(subscription.expiration);
-    
-                    if (currentDate <= expirationDate) {
-                        // Access granted since the subscription is still valid
-                        alert('Welcome! Your subscription is active.');
-                        return;
-                    } else {
-                        // Subscription expired, remove from localStorage
-                        localStorage.removeItem('subscriptionStatus');
-                        alert('Your subscription has expired. Please renew to continue.');
-                        window.location.href = 'payment.html';
-                        return;
-                    }
-                }
+       function checkSubscription() {
+    const subscriptionData = JSON.parse(localStorage.getItem('subscriptionStatus'));
+
+    if (subscriptionData) {
+        const currentDate = new Date();
+        const expirationDate = new Date(subscriptionData.expiration);
+
+        if (currentDate <= expirationDate) {
+            // Access granted
+            document.getElementById('accessMessage').innerText = "Welcome! Your subscription is active.";
+
+            // Check if it's about to expire (within 2 days)
+            const daysLeft = Math.floor((expirationDate - currentDate) / (1000 * 60 * 60 * 24));
+            if (daysLeft <= 2) {
+                alert(Your subscription will expire in ${daysLeft} day(s). Please renew to avoid losing access.);
             }
-            
-            // If no valid subscription is found, redirect to payment page
-            alert('No active subscription found. Please subscribe to gain access.');
+        } else {
+            // Subscription expired, remove from localStorage
+            localStorage.removeItem('subscriptionStatus');
+            alert('Your subscription has expired. Please renew to continue.');
             window.location.href = 'payment.html';
         }
-    
-        // Call the function when the page loads
-        checkSubscriptionStatus();
+    } else {
+        alert('No active subscription found. Please subscribe to gain access.');
+        window.location.href = 'payment.html';
+    }
+}
+
+checkSubscription();
+
     </script>
 </body>
 </html>
