@@ -4,7 +4,109 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Access Advanced Content</title>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <style>
+        body {
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Navbar */
+        #navBar {
+            background-color: #222;
+            padding: 15px;
+            text-align: center;
+            font-size: 18px;
+            border-bottom: 2px solid #ff6b6b;
+        }
+        
+        #navBar a {
+            color: #ff6b6b;
+            text-decoration: none;
+            margin: 0 15px;
+            padding: 5px 10px;
+            transition: 0.3s;
+        }
+        
+        #navBar a:hover {
+            background-color: #ff6b6b;
+            color: #222;
+            border-radius: 4px;
+        }
+        
+        /* Content Box */
+        #boxPan {
+            margin: 30px auto;
+            padding: 30px;
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            width: 80%;
+            text-align: center;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        
+        /* Advanced Topics Styling */
+        #advancedContent h3 {
+            color: #ff6b6b;
+            text-shadow: 1px 1px 2px #000;
+            margin-bottom: 20px;
+        }
+        
+        #advancedContent ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        #advancedContent ul li {
+            padding: 8px;
+            transition: transform 0.3s, background-color 0.3s;
+            font-size: 18px;
+        }
+        
+        #advancedContent ul li a {
+            color: #ff6b6b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        #advancedContent ul li:hover {
+            background-color: #333;
+            transform: scale(1.05);
+            border-radius: 5px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #ff6b6b, 0 0 10px #ff6b6b, 0 0 15px #ff6b6b, 0 0 20px #ff6b6b; }
+            100% { text-shadow: 0 0 20px #ff6b6b, 0 0 30px #ff6b6b, 0 0 40px #ff6b6b, 0 0 50px #ff6b6b; }
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            #boxPan {
+                width: 90%;
+                padding: 20px;
+            }
+            
+            #navBar {
+                font-size: 16px;
+            }
+            
+            #advancedContent ul li {
+                font-size: 16px;
+            }
+        }
+        
+    </style>
 </head>
 <body>
     <div id="navBar">
@@ -20,11 +122,11 @@
             <h3>Advanced Topics:</h3>
             <ul>
                 <li><a href="react.html">React - Basics to Advanced</a></li>
-                <li><a href="Vue.html">Vue.js - Mastering Components</a></li>
-                <li><a href="Vue.html">Tailwind CSS - Professional Styling</a></li>
-                <li>AJAX and API Integration</li>
-                <li>Authentication & Security</li>
-                <li>Version Control - Git & GitHub</li>
+                <li><a href="vue.html">Vue.js - Mastering Components</a></li>
+                <li><a href="tailwind.html">Tailwind CSS - Professional Styling</a></li>
+                <li><a href="ajax.html">AJAX and API Integration</a></li>
+                <li><a href="security.html">Authentication & Security</a></li>
+                <li><a href="version.html">Version Control - Git & GitHub</a></li>
             </ul>
         </div>
     </div>
