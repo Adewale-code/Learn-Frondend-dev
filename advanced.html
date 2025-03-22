@@ -78,10 +78,11 @@
                         // Save subscription details in localStorage
                         localStorage.setItem('subscriptionStatus', JSON.stringify({
                             accessGranted: true,
+                             expiration: expirationDate,
                             plan: plan,
                             email: email,
                             reference: response.reference,
-                            expiration: expirationDate.toISOString()
+                            
                         }));
         
                         // Redirect to access page
